@@ -21,6 +21,35 @@ class ProductServiceTest{
     }
 
     @Test
+    fun getAllProducts_ReturnsListOfProducts() {
+        val product1 = product()
+        val product2 = product(name = "Yellow Ducky", description = "The best bath buddies.", itemPrice = 12.99)
+
+        every { productService.addNewProduct(product1) } returns product1
+        every { productService.addNewProduct(product2) } returns product2
+
+        productService.addNewProduct(product1)
+        productService.addNewProduct(product2)
+
+        every { productService.getAllProducts() } returns listOf(product1, product2)
+
+        val actual = productService.getAllProducts()
+
+        assertEquals(2, actual.size)
+        with(product1) {
+            assertEquals(this.productId, actual[0].productId)
+            assertEquals(this.name, actual[0].name)
+            assertEquals(this.description, actual[0].description)
+        }
+
+        with(product2) {
+            assertEquals(this.productId, actual[1].productId)
+            assertEquals(this.name, actual[1].name)
+            assertEquals(this.description, actual[1].description)
+        }
+    }
+
+    @Test
     fun postNewProduct_ReturnsPostedProduct(){
         val product = product()
 

@@ -9,6 +9,9 @@ class ProductService (private val productRepository: ProductRepository) {
     }
 
     // Get product
+    fun getAllProducts(): List<Product>{
+        return productRepository.findAll().map { it.toDomain() }
+    }
 
     // Delete product
 }
