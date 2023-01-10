@@ -5,3 +5,10 @@ CREATE TABLE products (
     description VARCHAR(255),
     item_price DOUBLE
 );
+
+CREATE TABLE orders (
+    order_key BIGINT PRIMARY KEY,
+    order_id BINARY,
+    totalValue DOUBLE
+);
+

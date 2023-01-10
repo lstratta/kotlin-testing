@@ -1,15 +1,18 @@
 package testing.demo.product
 
-class ProductService (private val productRepository: ProductRepository) {
+import org.springframework.stereotype.Service
+
+@Service
+class ProductService(private val productRepository: ProductRepository) {
 
     fun addNewProduct(product: Product): Product {
-        val result =  productRepository.save(product.toDto())
+        val result = productRepository.save(product.toDto())
 
         return result.toDomain()
     }
 
-    // Get product
-    fun getAllProducts(): List<Product>{
+
+    fun getAllProducts(): List<Product> {
         return productRepository.findAll().map { it.toDomain() }
     }
 

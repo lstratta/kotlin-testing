@@ -1,11 +1,16 @@
 package testing.demo.product
 
+import testing.demo.order.OrderDTO
+import testing.demo.order.toDomain
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
@@ -27,11 +32,16 @@ data class ProductDTO(
 
     @Column(name = "item_price")
     val itemPrice: Double,
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "order_key", nullable = false)
+    val order: OrderDTO
 )
 
 fun ProductDTO.toDomain(): Product = Product(
-    productId = this.productId,
-    name = this.name,
-    description = this.description,
-    itemPrice = this.itemPrice
+    productId = productId,
+    name = name,
+    description = description,
+    order = order?.toDomain(),
+    itemPrice = itemPrice
 )
