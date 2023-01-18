@@ -7,5 +7,5 @@ import testing.demo.order.OrderDTO
 @Repository
 interface ProductRepository: CrudRepository<ProductDTO, Long> {
 
-    fun findProductByOrder(order: OrderDTO): List<ProductDTO>
+//    fun findProductByOrder(order: OrderDTO): List<ProductDTO>
 }

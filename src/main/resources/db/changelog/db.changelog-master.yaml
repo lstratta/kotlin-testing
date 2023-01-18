@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Luke Stratta
+      changes:
+
+        # PRODUCT TABLE
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: product_key
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: product_id
+                  type: UUID
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR
+                  constraints:
+                    nullable: true
+              - column:
+                  name: description
+                  type: VARCHAR
+                  constraints:
+                    nullable: true
+              - column:
+                  name: item_price
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+
+        - addAutoIncrement:
+            tableName: products
+            columnName: product_key
+            columnDataType: BIGINT
+            generationType: ALWAYS
+            startWith: 100
+            incrementBy: 1

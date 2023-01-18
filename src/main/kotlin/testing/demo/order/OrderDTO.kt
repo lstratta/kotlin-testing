@@ -20,13 +20,13 @@ data class OrderDTO(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "order_key")
-        val orderKey: Long? = null,
+        val orderKey: Long = 0,
 
         @Column(name = "order_id")
         val orderId: UUID,
 
-        @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-        val lineItems: List<ProductDTO>,
+//        @OneToMany(mappedBy = "order", cascade = [CascadeType.MERGE])
+//        val lineItems: List<ProductDTO>,
 
         @Column(name = "total_value")
         val totalValue: Double
@@ -34,6 +34,6 @@ data class OrderDTO(
 
 fun OrderDTO.toDomain(): Order = Order(
         orderId = orderId,
-        lineItems = lineItems.map { it.toDomain() },
+//        lineItems = lineItems.map { it.toDomain() },
         totalValue = totalValue
 )

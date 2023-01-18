@@ -1,5 +1,6 @@
 package testing.demo.product
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import testing.demo.order.OrderDTO
 import testing.demo.order.toDomain
 import java.util.UUID
@@ -19,10 +20,10 @@ data class ProductDTO(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_key")
-    val productKey: Long? = null,
+    val productKey: Long = 0,
 
     @Column(name = "product_id")
-    val productId: UUID, // SKU Code
+    val productId: UUID? = UUID.randomUUID(), // SKU Code
 
     @Column(name = "name")
     val name: String,
@@ -33,15 +34,15 @@ data class ProductDTO(
     @Column(name = "item_price")
     val itemPrice: Double,
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "order_key", nullable = false)
-    val order: OrderDTO
+//    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+//    @JoinColumn(name = "order_key", nullable = false)
+//    val order: OrderDTO? = null
 )
 
 fun ProductDTO.toDomain(): Product = Product(
     productId = productId,
     name = name,
     description = description,
-    order = order?.toDomain(),
+//    order = order?.toDomain(),
     itemPrice = itemPrice
 )

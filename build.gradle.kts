@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
+	id("org.liquibase.gradle") version "2.0.4"
 }
 
 group = "kotlin.testing"
@@ -24,6 +25,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.testng:testng:7.7.0")
     runtimeOnly("com.h2database:h2")
+	implementation("org.liquibase:liquibase-core:4.18.0")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.mockk:mockk:1.13.3")

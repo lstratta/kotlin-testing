@@ -6,11 +6,11 @@ import java.util.UUID
 
 data class Product(
 
-    val productId: UUID, // SKU Code
+    val productId: UUID? = UUID.randomUUID(), // SKU Code
     val name: String,
     val description: String,
     val itemPrice: Double,
-    val order: Order
+//    val order: Order? = null
 )
 
 fun Product.toDto(): ProductDTO = ProductDTO(
@@ -18,7 +18,7 @@ fun Product.toDto(): ProductDTO = ProductDTO(
     name = name,
     description = description,
     itemPrice = itemPrice,
-    order = order.toDto()
+//    order = order?.toDto()
 )
 
 fun Product.toCto(): ProductCTO = ProductCTO(
@@ -26,4 +26,5 @@ fun Product.toCto(): ProductCTO = ProductCTO(
     name = name,
     description = description,
     itemPrice = itemPrice,
+//    order = order
 )
