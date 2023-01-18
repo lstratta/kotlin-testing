@@ -10,7 +10,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: product_key
-                  type: BIGINT
+                  type: BIGINT 
                   constraints:
                     primaryKey: true
               - column:
