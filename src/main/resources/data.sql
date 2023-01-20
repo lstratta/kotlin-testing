@@ -16,7 +16,9 @@ INSERT INTO customer_orders (
     total_value,
     customer
 ) VALUES
-( 101, '38ca91e6-3f17-4fa5-9a33-9a7679812e1b', 142.50, '101' );
+( 101, '38ca91e6-3f17-4fa5-9a33-9a7679812e1b', 142.50, '101' ),
+( 102, 'b13bd441-ae87-4553-aeaa-2a6234e0d9c0', 0, '101' );
+
 
 INSERT INTO products (
     product_key,

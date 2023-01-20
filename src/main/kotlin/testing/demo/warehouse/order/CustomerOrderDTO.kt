@@ -5,9 +5,13 @@ import testing.demo.warehouse.product.ProductDTO
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.ForeignKey
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 
 @Entity(name = "customer_orders")
@@ -36,11 +40,12 @@ data class CustomerOrderDTO(
         @Column(name = "total_value")
         val totalValue: Double,
 
-//        @Column(name = "customer")
-//        val customer: CustomerDTO
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(foreignKey = ForeignKey(name = "customer_key"), name = "customer")
+        val customer: CustomerDTO? = null
 )
 
-fun CustomerOrderDTO.toDomain(): Order = Order(
+fun CustomerOrderDTO.toDomain(): CustomerOrder = CustomerOrder(
         orderId = customerOrderId,
         lineItems = products.map { it.productId.toString() },
         totalValue = totalValue

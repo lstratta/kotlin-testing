@@ -1,6 +1,5 @@
 package testing.demo.warehouse.product
 
-import testing.demo.warehouse.order.Order
 import java.util.UUID
 
 data class ProductCTO(

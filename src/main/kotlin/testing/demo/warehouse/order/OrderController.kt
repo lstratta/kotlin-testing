@@ -14,13 +14,13 @@ class OrderController (val orderService: OrderService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun addNewOrder(@RequestBody order: Order): Order {
+    fun addNewOrder(@RequestBody order: CustomerOrder): CustomerOrder {
         return orderService.addNewOrder(order)
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun getAllOrders(): List<Order> {
+    fun getAllOrders(): List<CustomerOrder> {
         return orderService.getAllOrders()
     }
 }
