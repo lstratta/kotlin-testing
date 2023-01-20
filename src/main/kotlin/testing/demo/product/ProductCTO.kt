@@ -8,13 +8,13 @@ data class ProductCTO(
     val name: String,
     val description: String,
     val itemPrice: Double,
-//    val order: Order? = null,
+    val order: Order,
 )
 
 fun ProductCTO.toDomain(): Product = Product(
     productId = productId,
     name = name,
     description = description,
-//    order = order,
+    order = order,
     itemPrice = itemPrice,
 )

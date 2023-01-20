@@ -22,7 +22,7 @@ class OrderRepositoryTest {
         totalValue: Double = 0.0
     ): OrderDTO = OrderDTO(
         orderId = orderId,
-        lineItems = lineItems,
+        products = lineItems,
         totalValue = totalValue
     )
 }

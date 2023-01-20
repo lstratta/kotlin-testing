@@ -10,7 +10,7 @@ data class Product(
     val name: String,
     val description: String,
     val itemPrice: Double,
-//    val order: Order? = null
+    val order: Order
 )
 
 fun Product.toDto(): ProductDTO = ProductDTO(
@@ -18,7 +18,7 @@ fun Product.toDto(): ProductDTO = ProductDTO(
     name = name,
     description = description,
     itemPrice = itemPrice,
-//    order = order?.toDto()
+    orderKey = order.toDto()
 )
 
 fun Product.toCto(): ProductCTO = ProductCTO(
@@ -26,5 +26,5 @@ fun Product.toCto(): ProductCTO = ProductCTO(
     name = name,
     description = description,
     itemPrice = itemPrice,
-//    order = order
+    order = order
 )

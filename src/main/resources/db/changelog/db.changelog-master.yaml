@@ -4,13 +4,41 @@ databaseChangeLog:
       author: Luke Stratta
       changes:
 
+        # ORDER TABLE
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: order_key
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: order_id
+                  type: UUID
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: total_value
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+        - addAutoIncrement:
+            tableName: orders
+            columnName: order_key
+            columnDataType: BIGINT
+            generationType: ALWAYS
+            startWith: 100
+            incrementBy: 1
+
         # PRODUCT TABLE
         - createTable:
             tableName: products
             columns:
               - column:
                   name: product_key
-                  type: BIGINT 
+                  type: BIGINT
                   constraints:
                     primaryKey: true
               - column:
@@ -34,7 +62,13 @@ databaseChangeLog:
                   type: DOUBLE
                   constraints:
                     nullable: false
-
+              - column:
+                  name: order_key
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_order_key
+                    references: orders(order_key)
+                    nullable: true
         - addAutoIncrement:
             tableName: products
             columnName: product_key
@@ -42,3 +76,4 @@ databaseChangeLog:
             generationType: ALWAYS
             startWith: 100
             incrementBy: 1
+
