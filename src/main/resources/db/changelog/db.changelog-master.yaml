@@ -82,7 +82,31 @@ databaseChangeLog:
       author: Luke Stratta
       changes:
 
-        # Customer Table
+        # Orders Products Link Table
+        - createTable:
+            tableName: orders_products_link
+            columns:
+              - column:
+                name: orders_products_link_key
+                type: BIGINT
+                constraints:
+                  primaryKey: true
+              - column:
+                  name: order_key
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_order_key
+                    references: orders(order_key)
+                    nullable: true
+              - column:
+                  name: product_key
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_product_key
+                    references: products(product_key)
+                    nullable: true
+
+        # Customers Table
         - createTable:
             tableName: customers
             columns:
@@ -107,4 +131,49 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
-              
+
+        # Addresses Table
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: address_key
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: address_id
+                  type: UUID
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: building_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: street
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: county
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: postcode
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+
+
+
+
