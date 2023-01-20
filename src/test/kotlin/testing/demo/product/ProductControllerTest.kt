@@ -15,6 +15,10 @@ import org.springframework.test.web.servlet.MockMvcBuilder
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import testing.demo.warehouse.product.ProductCTO
+import testing.demo.warehouse.product.ProductController
+import testing.demo.warehouse.product.ProductService
+import testing.demo.warehouse.product.toDomain
 import java.util.UUID
 
 

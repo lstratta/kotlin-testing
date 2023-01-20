@@ -8,6 +8,8 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import testing.demo.warehouse.product.Product
+import testing.demo.warehouse.product.ProductService
 import java.util.UUID
 
 class ProductServiceTest{

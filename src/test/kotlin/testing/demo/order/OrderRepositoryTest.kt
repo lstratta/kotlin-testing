@@ -3,6 +3,8 @@ package testing.demo.order
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import testing.demo.warehouse.order.OrderDTO
+import testing.demo.warehouse.order.OrderRepository
 import java.util.UUID
 
 @DataJpaTest

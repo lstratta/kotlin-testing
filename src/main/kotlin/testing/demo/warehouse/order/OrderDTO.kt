@@ -1,7 +1,7 @@
-package testing.demo.order
+package testing.demo.warehouse.order
 
-import testing.demo.product.ProductDTO
-import testing.demo.product.toDomain
+import testing.demo.warehouse.product.ProductDTO
+import testing.demo.warehouse.product.toDomain
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -31,7 +31,7 @@ data class OrderDTO(
         // If *mappedBy* wasn't present, Hibernate would create an
         // associations/linking table to handle both primary keys of both
         // entities as foreign keys of the association table.
-        @OneToMany(mappedBy = "orderKey")
+        @OneToMany(mappedBy = "customerOrder")
         val products: List<ProductDTO> = emptyList(),
 
         @Column(name = "total_value")

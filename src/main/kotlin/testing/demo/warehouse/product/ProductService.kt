@@ -1,4 +1,4 @@
-package testing.demo.product
+package testing.demo.warehouse.product
 
 import org.springframework.stereotype.Service
 

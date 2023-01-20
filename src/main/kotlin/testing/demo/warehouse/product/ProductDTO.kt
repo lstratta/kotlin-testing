@@ -1,7 +1,7 @@
-package testing.demo.product
+package testing.demo.warehouse.product
 
-import testing.demo.order.OrderDTO
-import testing.demo.order.toDomain
+import testing.demo.warehouse.order.OrderDTO
+import testing.demo.warehouse.order.toDomain
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -12,6 +12,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity(name = "products")
 data class ProductDTO(
@@ -34,13 +35,12 @@ data class ProductDTO(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = ForeignKey(name = "order_key"), name = "order_key")
-    val orderKey: OrderDTO
+    val customerOrder: OrderDTO? = null
 )
 
 fun ProductDTO.toDomain(): Product = Product(
     productId = productId,
     name = name,
     description = description,
-    order = orderKey.toDomain(),
     itemPrice = itemPrice
 )

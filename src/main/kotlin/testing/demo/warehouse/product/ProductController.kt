@@ -1,4 +1,4 @@
-package testing.demo.order
+package testing.demo.warehouse.product
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,18 +9,19 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/order")
-class OrderController (val orderService: OrderService) {
+@RequestMapping("/product")
+class ProductController(val productService: ProductService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun addNewOrder(@RequestBody order: Order): Order {
-        return orderService.addNewOrder(order)
+    fun addNewProduct(@RequestBody product: ProductCTO): ProductCTO {
+        return productService.addNewProduct(product.toDomain()).toCto()
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun getAllOrders(): List<Order> {
-        return orderService.getAllOrders()
+    fun getAllProducts(): List<ProductCTO> {
+        return productService.getAllProducts().map { it.toCto() }
     }
+
 }

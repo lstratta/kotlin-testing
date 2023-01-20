@@ -5,6 +5,8 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import testing.demo.warehouse.product.ProductDTO
+import testing.demo.warehouse.product.ProductRepository
 import java.util.UUID
 import kotlin.test.assertEquals
 

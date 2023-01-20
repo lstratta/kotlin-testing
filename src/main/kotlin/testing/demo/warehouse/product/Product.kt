@@ -1,7 +1,7 @@
-package testing.demo.product
+package testing.demo.warehouse.product
 
-import testing.demo.order.Order
-import testing.demo.order.toDto
+import testing.demo.warehouse.order.Order
+import testing.demo.warehouse.order.toDto
 import java.util.UUID
 
 data class Product(
@@ -10,7 +10,6 @@ data class Product(
     val name: String,
     val description: String,
     val itemPrice: Double,
-    val order: Order
 )
 
 fun Product.toDto(): ProductDTO = ProductDTO(
@@ -18,7 +17,6 @@ fun Product.toDto(): ProductDTO = ProductDTO(
     name = name,
     description = description,
     itemPrice = itemPrice,
-    orderKey = order.toDto()
 )
 
 fun Product.toCto(): ProductCTO = ProductCTO(
@@ -26,5 +24,4 @@ fun Product.toCto(): ProductCTO = ProductCTO(
     name = name,
     description = description,
     itemPrice = itemPrice,
-    order = order
 )

@@ -63,7 +63,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: order_key
+                  name: customer_order
                   type: BIGINT
                   constraints:
                     foreignKeyName: fk_order_key
@@ -77,3 +77,34 @@ databaseChangeLog:
             startWith: 100
             incrementBy: 1
 
+  - changeSet:
+      id: 2
+      author: Luke Stratta
+      changes:
+
+        # Customer Table
+        - createTable:
+            tableName: customers
+            columns:
+              - column:
+                  name: customer_key
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: customer_id
+                  type: UUID
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              

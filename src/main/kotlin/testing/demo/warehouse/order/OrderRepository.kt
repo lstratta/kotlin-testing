@@ -1,4 +1,4 @@
-package testing.demo.order
+package testing.demo.warehouse.order
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository

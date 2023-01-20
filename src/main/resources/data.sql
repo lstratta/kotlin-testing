@@ -14,7 +14,7 @@ INSERT INTO products (
     name,
     description,
     item_price,
-    order_key
+    customer_order
 ) VALUES
 (
     1,
