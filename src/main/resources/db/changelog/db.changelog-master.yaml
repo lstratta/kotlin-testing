@@ -225,5 +225,15 @@ databaseChangeLog:
             startWith: 100
             incrementBy: 1
 
+        - addColumn:
+            tableName: customer_orders
+            columns:
+            - column:
+                name: customer
+                type: BIGINT
+                constraints:
+                  foreignKeyName: fk_customer_key_to_customer_orders
+                  references: customers(customer_key)
+                  nullable: false
 
 

@@ -1,12 +1,22 @@
 
+---------- Customers --------------
+INSERT INTO customers (
+    customer_key,
+    customer_id,
+    first_name,
+    last_name
+) VALUES
+( 101, '901404a9-0dbb-4c5a-92d0-0f6ad2ea2f50', 'Horus', 'Lupercal' );
+
 ---------- Products and Orders -------------
 
 INSERT INTO customer_orders (
     customer_order_key,
     customer_order_id,
-    total_value
+    total_value,
+    customer
 ) VALUES
-( 101, '38ca91e6-3f17-4fa5-9a33-9a7679812e1b', 142.50 );
+( 101, '38ca91e6-3f17-4fa5-9a33-9a7679812e1b', 142.50, '101' );
 
 INSERT INTO products (
     product_key,

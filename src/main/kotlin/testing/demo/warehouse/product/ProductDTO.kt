@@ -11,14 +11,13 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
-import javax.persistence.Table
 
 @Entity(name = "products")
 data class ProductDTO(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_key")
-    val productKey: Long? = null,
+    val productKey: Long = 0,
 
     @Column(name = "product_id")
     val productId: UUID? = UUID.randomUUID(), // SKU Code

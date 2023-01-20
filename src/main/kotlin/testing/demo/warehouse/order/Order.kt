@@ -11,5 +11,5 @@ data class Order(
 fun Order.toDto(): CustomerOrderDTO = CustomerOrderDTO(
     customerOrderId = orderId,
     totalValue = totalValue,
-//    products = lineItems.map { it.toDto() }
+
 )

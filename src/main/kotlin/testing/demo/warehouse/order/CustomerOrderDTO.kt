@@ -1,5 +1,6 @@
 package testing.demo.warehouse.order
 
+import testing.demo.warehouse.customer.CustomerDTO
 import testing.demo.warehouse.product.ProductDTO
 import java.util.UUID
 import javax.persistence.Column
@@ -15,7 +16,7 @@ data class CustomerOrderDTO(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "customer_order_key")
-        val customerOrderKey: Long? = null,
+        val customerOrderKey: Long = 0,
 
         @Column(name = "customer_order_id")
         val customerOrderId: UUID,
@@ -33,7 +34,10 @@ data class CustomerOrderDTO(
         val products: List<ProductDTO> = emptyList(),
 
         @Column(name = "total_value")
-        val totalValue: Double
+        val totalValue: Double,
+
+//        @Column(name = "customer")
+//        val customer: CustomerDTO
 )
 
 fun CustomerOrderDTO.toDomain(): Order = Order(
