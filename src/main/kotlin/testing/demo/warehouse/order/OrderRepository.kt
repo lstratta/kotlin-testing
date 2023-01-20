@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface OrderRepository: CrudRepository<OrderDTO, Long>{
+interface OrderRepository: CrudRepository<CustomerOrderDTO, Long>{
 
-    fun findOrderByOrderId(orderId: UUID): OrderDTO
+    fun findOrderByCustomerOrderId(customerOrderId: UUID): CustomerOrderDTO
 }

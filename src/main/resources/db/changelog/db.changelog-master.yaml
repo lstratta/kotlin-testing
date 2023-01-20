@@ -6,15 +6,15 @@ databaseChangeLog:
 
         # ORDER TABLE
         - createTable:
-            tableName: orders
+            tableName: customer_orders
             columns:
               - column:
-                  name: order_key
+                  name: customer_order_key
                   type: BIGINT
                   constraints:
                     primaryKey: true
               - column:
-                  name: order_id
+                  name: customer_order_id
                   type: UUID
                   constraints:
                     unique: true
@@ -25,8 +25,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - addAutoIncrement:
-            tableName: orders
-            columnName: order_key
+            tableName: customer_orders
+            columnName: customer_order_key
             columnDataType: BIGINT
             generationType: ALWAYS
             startWith: 100
@@ -66,8 +66,8 @@ databaseChangeLog:
                   name: customer_order
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_order_key
-                    references: orders(order_key)
+                    foreignKeyName: fk_order_key_to_products
+                    references: customer_orders(customer_order_key)
                     nullable: true
         - addAutoIncrement:
             tableName: products
@@ -87,16 +87,16 @@ databaseChangeLog:
             tableName: orders_products_link
             columns:
               - column:
-                name: orders_products_link_key
-                type: BIGINT
-                constraints:
-                  primaryKey: true
+                  name: orders_products_link_key
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
               - column:
                   name: order_key
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_order_key
-                    references: orders(order_key)
+                    foreignKeyName: fk_order_key_to_orders_products
+                    references: customer_orders(customer_order_key)
                     nullable: true
               - column:
                   name: product_key
@@ -105,6 +105,13 @@ databaseChangeLog:
                     foreignKeyName: fk_product_key
                     references: products(product_key)
                     nullable: true
+        - addAutoIncrement:
+            tableName: orders_products_link
+            columnName: orders_products_link_key
+            columnDataType: BIGINT
+            generationType: ALWAYS
+            startWith: 100
+            incrementBy: 1
 
         # Customers Table
         - createTable:
@@ -131,6 +138,13 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+        - addAutoIncrement:
+            tableName: customers
+            columnName: customer_key
+            columnDataType: BIGINT
+            generationType: ALWAYS
+            startWith: 100
+            incrementBy: 1
 
         # Addresses Table
         - createTable:
@@ -172,8 +186,44 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+        - addAutoIncrement:
+            tableName: addresses
+            columnName: address_key
+            columnDataType: BIGINT
+            generationType: ALWAYS
+            startWith: 100
+            incrementBy: 1
 
-
+        # Orders Products Link Table
+        - createTable:
+            tableName: customers_addresses_link
+            columns:
+              - column:
+                  name: customers_addresses_link_key
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: customers_key
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_customer_key_to_customers_addresses
+                    references: customers(customer_key)
+                    nullable: true
+              - column:
+                  name: addresses_key
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_address_key_to_customers_addresses
+                    references: addresses(address_key)
+                    nullable: true
+        - addAutoIncrement:
+            tableName: customers_addresses_link
+            columnName: customers_addresses_link_key
+            columnDataType: BIGINT
+            generationType: ALWAYS
+            startWith: 100
+            incrementBy: 1
 
 
 

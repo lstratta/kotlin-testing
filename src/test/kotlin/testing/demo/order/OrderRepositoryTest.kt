@@ -23,7 +23,7 @@ class OrderRepositoryTest {
         lineItems: MutableList<OrderDTO> = mutableListOf(),
         totalValue: Double = 0.0
     ): OrderDTO = OrderDTO(
-        orderId = orderId,
+        customerOrderId = orderId,
         products = lineItems,
         totalValue = totalValue
     )

@@ -8,8 +8,8 @@ data class Order(
     val lineItems: List<String> = emptyList()
 )
 
-fun Order.toDto(): OrderDTO = OrderDTO(
-    orderId = orderId,
+fun Order.toDto(): CustomerOrderDTO = CustomerOrderDTO(
+    customerOrderId = orderId,
     totalValue = totalValue,
 //    products = lineItems.map { it.toDto() }
 )

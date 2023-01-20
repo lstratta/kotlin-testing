@@ -1,7 +1,6 @@
 package testing.demo.warehouse.product
 
-import testing.demo.warehouse.order.OrderDTO
-import testing.demo.warehouse.order.toDomain
+import testing.demo.warehouse.order.CustomerOrderDTO
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -34,8 +33,8 @@ data class ProductDTO(
     val itemPrice: Double,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = ForeignKey(name = "order_key"), name = "order_key")
-    val customerOrder: OrderDTO? = null
+    @JoinColumn(foreignKey = ForeignKey(name = "customer_order_key"), name = "customer_order")
+    val customerOrder: CustomerOrderDTO? = null
 )
 
 fun ProductDTO.toDomain(): Product = Product(

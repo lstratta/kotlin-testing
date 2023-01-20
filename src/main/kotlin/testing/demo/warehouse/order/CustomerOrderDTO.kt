@@ -1,7 +1,6 @@
 package testing.demo.warehouse.order
 
 import testing.demo.warehouse.product.ProductDTO
-import testing.demo.warehouse.product.toDomain
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -9,18 +8,17 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.OneToMany
-import javax.persistence.Table
 
-@Entity(name = "orders")
-data class OrderDTO(
+@Entity(name = "customer_orders")
+data class CustomerOrderDTO(
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "order_key")
-        val orderKey: Long? = null,
+        @Column(name = "customer_order_key")
+        val customerOrderKey: Long? = null,
 
-        @Column(name = "order_id")
-        val orderId: UUID,
+        @Column(name = "customer_order_id")
+        val customerOrderId: UUID,
 
         // *mappedBy* points to the field in the connecting entity that owns
         // the relationship. This tells Hibernate to only track the use
@@ -38,8 +36,8 @@ data class OrderDTO(
         val totalValue: Double
 )
 
-fun OrderDTO.toDomain(): Order = Order(
-        orderId = orderId,
+fun CustomerOrderDTO.toDomain(): Order = Order(
+        orderId = customerOrderId,
         lineItems = products.map { it.productId.toString() },
         totalValue = totalValue
 )

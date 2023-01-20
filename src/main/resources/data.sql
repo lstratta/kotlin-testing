@@ -1,9 +1,9 @@
 
 ---------- Products and Orders -------------
 
-INSERT INTO orders (
-    order_key,
-    order_id,
+INSERT INTO customer_orders (
+    customer_order_key,
+    customer_order_id,
     total_value
 ) VALUES
 ( 101, '38ca91e6-3f17-4fa5-9a33-9a7679812e1b', 142.50 );
