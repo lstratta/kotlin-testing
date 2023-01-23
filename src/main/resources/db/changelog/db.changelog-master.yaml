@@ -62,13 +62,6 @@ databaseChangeLog:
                   type: DOUBLE
                   constraints:
                     nullable: false
-              - column:
-                  name: customer_order
-                  type: BIGINT
-                  constraints:
-                    foreignKeyName: fk_order_key_to_products
-                    references: customer_orders(customer_order_key)
-                    nullable: true
         - addAutoIncrement:
             tableName: products
             columnName: product_key
@@ -92,7 +85,7 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
-                  name: order_key
+                  name: customer_order_key
                   type: BIGINT
                   constraints:
                     foreignKeyName: fk_order_key_to_orders_products
@@ -194,7 +187,7 @@ databaseChangeLog:
             startWith: 100
             incrementBy: 1
 
-        # Orders Products Link Table
+        # Customers Addresses Link Table
         - createTable:
             tableName: customers_addresses_link
             columns:

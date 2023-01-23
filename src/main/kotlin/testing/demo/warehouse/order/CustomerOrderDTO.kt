@@ -5,12 +5,13 @@ import testing.demo.warehouse.product.ProductDTO
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType
 import javax.persistence.ForeignKey
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 
@@ -25,22 +26,30 @@ data class CustomerOrderDTO(
         @Column(name = "customer_order_id")
         val customerOrderId: UUID,
 
-        // *mappedBy* points to the field in the connecting entity that owns
-        // the relationship. This tells Hibernate to only track the use
-        // of foreign keys on the other side of the relationship.
-        // In this case, *mappedBy* points to the productOrder
-        // field in the ProductDTO entity
 
-        // If *mappedBy* wasn't present, Hibernate would create an
-        // associations/linking table to handle both primary keys of both
-        // entities as foreign keys of the association table.
-        @OneToMany(mappedBy = "customerOrder")
+        @ManyToMany
+        // TODO: re-write explanation below
+        // *JoinColumns* and *InverseJoinColumns* needs to be the correct way around
+        @JoinTable(
+                name = "orders_products_link",
+                joinColumns = [JoinColumn(name = "customer_order_key")],
+                inverseJoinColumns = [JoinColumn(name = "product_key")]
+        )
         val products: List<ProductDTO> = emptyList(),
 
         @Column(name = "total_value")
         val totalValue: Double,
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        // The *@ManyToOne* side of the relationship is the owning side of the relationship.
+        // The owning side is the side that hold the foreign key to the *@OneToMany* field.
+        // todo: Add Fetch type information (issue #5)
+        @ManyToOne
+        // *@JoinColumn* tells hibernate to make queries using a join that uses this column
+        // when connecting to this particular entity.
+        // You assign the foreign key of the joining table
+        // The second *name* field has to match the name of the column in the database
+        // that holds the foreign key. This *name* field replaces
+        // *@Column(name = "customer_order")
         @JoinColumn(foreignKey = ForeignKey(name = "customer_key"), name = "customer")
         val customer: CustomerDTO? = null
 )

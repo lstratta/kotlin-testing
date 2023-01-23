@@ -26,6 +26,15 @@ data class CustomerDTO (
     @Column(name = "last_name")
     val lastName: String,
 
+    // *mappedBy* points to the field (i.e. variable) in the connecting entity that owns
+    // the relationship. This tells Hibernate to only track the use
+    // of foreign keys on the other side of the relationship.
+    // In this case, *mappedBy* points to the productOrder
+    // field in the ProductDTO entity
+
+    // If *mappedBy* wasn't present, Hibernate would create an
+    // associations/linking table to handle both primary keys of both
+    // entities as foreign keys of the association table.
     @OneToMany (mappedBy = "customer")
     val allOrders: List<CustomerOrderDTO> = emptyList()
 )
