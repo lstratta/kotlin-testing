@@ -29,7 +29,14 @@ data class CustomerOrderDTO(
 
         @ManyToMany
         // TODO: re-write explanation below
-        // *JoinColumns* and *InverseJoinColumns* needs to be the correct way around
+        // *name* tells JPA which table to go to find the ManyToMany relationship
+        // *joinColumns* tells JPA which column to go to in the linking table so that it
+        // can match it to the entity this side of the relationship is in.
+        // *inverseJoinColumns* does the same, but for the *mappedBy* side of the
+        // relationship.
+        // These columns need to be the correct way around because the foreign key in the
+        // linking table (that is, the primary key of one side of the relationship) needs
+        // to match up correctly.
         @JoinTable(
                 name = "orders_products_link",
                 joinColumns = [JoinColumn(name = "customer_order_key")],
